@@ -1,4 +1,5 @@
 import pygame
+import random
 from pygame.locals import *
 import sys
 
@@ -20,23 +21,35 @@ vel = pygame.math.Vector2(10, 10)
 
 logo_img = pygame.image.load("logo.png")
 
+r = 255
+g = 255
+b = 255
+
+
 # game loop
 while True:
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
-    
-    screen.fill("white")
+            sys.exit() 
 
+    screen.fill((r, g, b))
+    
     dvd.x += vel.x * dt
     dvd.y += vel.y * dt
 
     if (dvd.x+88) >= screenWidth or (dvd.x-40) <= 0:
-        vel.x *= -1 
+        vel.x *= -1
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
     if (dvd.y+40) >= screenHeight or (dvd.y-40) <= 0:
         vel.y *= -1
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+
 
     screen.blit(logo_img, (dvd.x-40, dvd.y-40))
 
